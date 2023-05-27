@@ -1,20 +1,32 @@
 <script>
-  let firstName = "Jimi";
-  let lastName = "Hendrix";
-  let beltColor = "black";
+  let people = [
+    { name: "yoshi", beltColor: "black", age: 25, id: 1 },
+    { name: "mario", beltColor: "orange", age: 45, id: 2 },
+    { name: "luigi", beltColor: "brown", age: 35, id: 3 },
+  ];
 
-  $: fullName = `${firstName} ${lastName}`;
-  $: {
-    console.log(beltColor);
-    console.log(fullName);
+  function handleClick(e, id) {
+    people = people.filter((p) => p.id != id);
+    console.log(e);
   }
 </script>
 
 <main>
-  <p>{fullName} {beltColor} belt</p>
-  <input type="text" bind:value={firstName} />
-  <input type="text" bind:value={lastName} />
-  <input type="text" bind:value={beltColor} />
+  {#each people as person (person.id)}
+    <div>
+      <h4>{person.name.toUpperCase()}</h4>
+      <p>{person.age} years old, {person.beltColor} belt</p>
+      <button
+        on:click={(e) => {
+          handleClick(e, person.id);
+        }}
+      >
+        delete
+      </button>
+    </div>
+  {:else}
+    <p>There are no people to show ...</p>
+  {/each}
 </main>
 
 <style>
