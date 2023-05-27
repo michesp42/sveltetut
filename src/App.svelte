@@ -15,7 +15,7 @@
 </script>
 
 <main>
-  <Modal />
+  <Modal message="Hey, I'm a prop value." isPromo />
 
   {#if num > 20}
     <p>{num} is greater than 20</p>
