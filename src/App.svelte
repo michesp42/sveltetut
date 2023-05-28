@@ -1,21 +1,28 @@
 <script>
   import Modal from "./components/Modal.svelte";
 
+  let num = 5;
+  let showModal = false;
   let people = [
     { name: "yoshi", beltColor: "black", age: 25, id: 1 },
     { name: "mario", beltColor: "orange", age: 45, id: 2 },
     { name: "luigi", beltColor: "brown", age: 35, id: 3 },
   ];
-  let num = 5;
 
   function handleClick(e, id) {
     people = people.filter((p) => p.id != id);
     console.log(e);
   }
+
+  function toggleModal() {
+    showModal = !showModal;
+  }
 </script>
 
 <main>
-  <Modal message="Hey, I'm a prop value." isPromo />
+  <Modal message="Hey, I'm a prop value." isPromo {showModal} on:click={toggleModal} />
+
+  <button on:click={toggleModal}>Open modal</button>
 
   {#if num > 20}
     <p>{num} is greater than 20</p>
