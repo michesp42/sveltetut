@@ -20,7 +20,21 @@
 </script>
 
 <main>
-  <Modal message="Hey, I'm a prop value." isPromo {showModal} on:click={toggleModal} />
+  <Modal
+    message="Hey, I'm a prop value."
+    isPromo
+    {showModal}
+    on:click={toggleModal}
+  >
+    <h3>Add a new person</h3>
+
+    <form>
+      <input type="text" placeholder="name" />
+      <input type="text" placeholder="belt color" />
+
+      <button>Add person</button>
+    </form>
+  </Modal>
 
   <button on:click={toggleModal}>Open modal</button>
 
